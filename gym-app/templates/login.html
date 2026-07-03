@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Inloggen | GymBros{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <h1>Inloggen</h1>
+        <p class="subtitle">Log in om je dashboard te bekijken.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="jij@email.com" required>
+
+            <label for="password">Wachtwoord</label>
+            <input type="password" id="password" name="password" placeholder="Je wachtwoord" required>
+
+            <button type="submit">Inloggen</button>
+        </form>
+
+        <p class="bottom-text">
+            Nog geen account? <a href="{{ url_for('register') }}">Registreren</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
